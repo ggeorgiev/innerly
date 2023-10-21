@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+build --action_env=NEO4J_DATABASE
+build --action_env=NEO4J_USER
+build --action_env=NEO4J_PASSWORD
+
+build --symlink_prefix=/
+build --disk_cache=~/.cache/bazel
+build --experimental_repository_cache_urls_as_default_canonical_id=true
+build --nobuild_runfile_links
+build --experimental_inmemory_jdeps_files
+build --experimental_inmemory_dotd_files
+build --experimental_action_cache_store_output_metadata
+build --remote_download_outputs=minimal
+run --remote_download_outputs=toplevel
+build --verbose_failures
+test --verbose_failures
+test --test_output=errors
+coverage --test_tag_filters=-no-coverage
+coverage --experimental_split_coverage_postprocessing
+coverage --experimental_fetch_all_coverage_outputs

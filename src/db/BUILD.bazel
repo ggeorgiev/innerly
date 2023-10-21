@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "db",
+    srcs = [
+        "argument.go",
+        "statement.go",
+        "topic.go",
+    ],
+    importpath = "github.com/ggeorgiev/neo/src/db",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_neo4j_neo4j_go_driver_v5//neo4j"],
+)

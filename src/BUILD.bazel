@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "src_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/ggeorgiev/neo/src",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//src/db",
+        "//src/sample",
+        "@com_github_neo4j_neo4j_go_driver_v5//neo4j",
+    ],
+)
+
+go_binary(
+    name = "neo",
+    embed = [":src_lib"],
+    visibility = ["//visibility:public"],
+)
